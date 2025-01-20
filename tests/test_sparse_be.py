@@ -1,5 +1,5 @@
-from sparse_block_encode.utils import create_banded_circulant_matrix
-from sparse_block_encode.sparse_be import be
+from sparse_be.utils import create_banded_circulant_matrix
+from sparse_be.sparse_be import be
 from qiskit import QuantumCircuit
 import unittest   # The test framework
 
