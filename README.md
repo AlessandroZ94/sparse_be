@@ -1,4 +1,7 @@
 # sparse_be
+![block_encoding](https://github.com/user-attachments/assets/26421007-a22c-4c55-a62c-17d6da9f2b88)
+
+
 Python and Qiskit implementation of explicit quantum circuits for block encoding of certain sparse matrices.
 Currently works for banded circulant matrices and symmetric 2x2 matrices.
 This implementation is based on the following article: 
