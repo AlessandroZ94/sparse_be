@@ -15,7 +15,11 @@ class Test_TestMatrix(unittest.TestCase):
         A = create_banded_circulant_matrix(2, 1, 0.25, 0.5)
         circuit, alpha = be(A)
         self.assertIsInstance(circuit, QuantumCircuit, "Object is not an instance of QuantumCircuit")
-        
+
+    def test_draw(self):
+        A = create_banded_circulant_matrix(2, 1, 0.25, 0.5)
+        circuit, alpha = be(A, draw=True)
+        self.assertIsInstance(circuit, QuantumCircuit, "Object is not an instance of QuantumCircuit")
 
 if __name__ == '__main__':
     unittest.main()

@@ -9,7 +9,7 @@ setup(
     url="https://github.com/AlessandroZ94/sparse_be",  # Project URL
     packages=find_packages(),           # Automatically find and include packages
     install_requires=[
-        "numpy>=1.21.0", "qiskit>=1.3.1"               # Add dependencies here
+        "numpy>=1.21.0", "qiskit>=1.3.1", "matplotlib>=3.10.0", "pylatexenc>=2.10"              # Add dependencies here
     ],
     license="Apache License 2.0",
     classifiers=[
