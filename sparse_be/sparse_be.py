@@ -18,7 +18,7 @@ def L_gate_create(j_qubits, reverse_bits=True, draw=False):
     if reverse_bits:
         qc = qc.reverse_bits()
     if draw:
-        qc.draw("mpl", 1, "./L_gate.png")
+        qc.draw("mpl", 1, "./images/L_gate.png")
     L_gate = qc.to_gate()
     return L_gate
 
@@ -36,7 +36,7 @@ def R_gate_create(j_qubits, reverse_bits=True, draw=False):
     if reverse_bits:
         qc = qc.reverse_bits()
     if draw:
-        qc.draw("mpl", 1, "./R_gate.png")
+        qc.draw("mpl", 1, "./images/R_gate.png")
     R_gate = qc.to_gate()
     return R_gate
 
@@ -162,5 +162,5 @@ def be(A, reverse_bits=True, draw=False):
         circ.h(1)
 
     if draw:
-        circ.draw("mpl", 1, "./block_encoding.png")
+        circ.draw("mpl", 1, "./images/block_encoding.png")
     return circ, factor
