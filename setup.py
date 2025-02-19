@@ -11,9 +11,9 @@ setup(
     install_requires=[
         "numpy>=1.21.0", "qiskit>=1.3.1", "matplotlib>=3.10.0", "pylatexenc>=2.10"              # Add dependencies here
     ],
-    license="Apache License 2.0",
+    license= "MIT",
     classifiers=[
-        "License :: OSI Approved :: Apache Software License",
+        "License :: OSI Approved :: MIT License",
         "Programming Language :: Python :: 3",
     ],
     python_requires='>=3.6',            # Minimum Python version required
