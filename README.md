@@ -8,7 +8,12 @@ This implementation is based on the following article:
 
 Camps, Daan, et al. "Explicit quantum circuits for block encodings of certain sparse matrices (2022)." arXiv preprint arXiv:2203.10236.
 
-# Installation guide:
+# Installing from the distribution:
+```
+pip install .\dist\sparse_be-0.1.0.tar.gz
+```
+
+# Installing from source guide:
 ```
 pip install setuptools wheel
 python setup.py sdist bdist_wheel
