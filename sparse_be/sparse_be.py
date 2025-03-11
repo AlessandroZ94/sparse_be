@@ -7,7 +7,7 @@ from qiskit.circuit.library import RYGate, MCXGate
 from qiskit.circuit.library import UCRYGate
 
 
-def L_gate_create(j_qubits, reverse_bits=True, draw=False):
+def L_gate_create(j_qubits, reverse_bits=True, draw=True):
     qc = QuantumCircuit(j_qubits, name='L')
     for i in range (0, j_qubits-1):
         gate = MCXGate(j_qubits-1-i)
@@ -22,7 +22,7 @@ def L_gate_create(j_qubits, reverse_bits=True, draw=False):
     L_gate = qc.to_gate()
     return L_gate
 
-def R_gate_create(j_qubits, reverse_bits=True, draw=False):
+def R_gate_create(j_qubits, reverse_bits=True, draw=True):
     qc = QuantumCircuit(j_qubits, name='R')
     list_R = list(range(1, j_qubits))
     qc.x(list_R)
@@ -90,13 +90,13 @@ def be(A, reverse_bits=True, draw=False):
         a_reg = QuantumRegister(1, "a")
         l_reg = QuantumRegister(anc_qubits-1, "l")
         j_reg = QuantumRegister(j_qubits, "j")
-        circ = QuantumCircuit(a_reg, l_reg, j_reg)
+        circ = QuantumCircuit(j_reg, l_reg, a_reg)
 
         if neg:
             # add a -1 factor to the overall circuit to block encode the correct matrix
-            circ.unitary(-np.eye(2**(j_qubits)), range(anc_qubits,anc_qubits+j_qubits)) 
+            circ.unitary(-np.eye(2**(j_qubits)), range(j_qubits)) 
 
-        circ.h(list(range(1,anc_qubits)))
+        circ.h(l_reg)
 
         #Oa circuit
         value = 1
@@ -113,38 +113,37 @@ def be(A, reverse_bits=True, draw=False):
             angles = [theta0, theta2]
         if gamma == 0:
             angles = [theta0, theta1]
-        controls = list(range(anc_qubits-1))
-        target = [anc_qubits-1]
-        circ.append(UCRYGate(angles), controls +  target)
+
+        circ.append(UCRYGate(angles), [j_qubits+2, j_qubits, j_qubits+1])
 
         # Oc circuit
-        r1=2
-        r2=1
+        r1=j_qubits+1
+        r2=j_qubits
 
         if (not set_lower_diag) or (not set_upper_diag):
-            r1 = 1
-            r2 = 1
+            r1 = j_qubits
+            r2 = j_qubits
             
         if set_lower_diag:
             # set the lower diagonal value beta
-            j_qubits_spec1 = list(range(anc_qubits, anc_qubits+j_qubits))
+            j_qubits_spec1 = list(range(0, j_qubits))
             j_qubits_spec1.insert(0, r2)
-            circ.append(L_gate_create(j_qubits, reverse_bits, draw).control(1), j_qubits_spec1)
+            circ.append(L_gate_create(j_qubits, True, draw).control(1), j_qubits_spec1)
 
         if set_upper_diag:
             # set the upper diagonal value beta
-            j_qubits_spec2 = list(range(anc_qubits, anc_qubits+j_qubits))
+            j_qubits_spec2 = list(range(0, j_qubits))
             j_qubits_spec2.insert(0, r1)
-            circ.append(R_gate_create(j_qubits, reverse_bits, draw).control(1), j_qubits_spec2)
+            circ.append(R_gate_create(j_qubits, True, draw).control(1), j_qubits_spec2)
 
-        circ.h(list(range(1,anc_qubits)))
+        circ.h(l_reg)
 
     elif j_qubits==1:
         # symmetric 2x2 matrix case
         anc_qubits = 2
         j_reg = QuantumRegister(j_qubits, "j")
         a_reg = QuantumRegister(anc_qubits, "a")
-        circ = QuantumCircuit(a_reg, j_reg)
+        circ = QuantumCircuit(j_reg, a_reg)
         circ.h(1)
 
         #Oa circuit

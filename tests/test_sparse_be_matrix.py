@@ -24,7 +24,7 @@ class Test_TestBlockEncodedMatrix(unittest.TestCase):
         print("\n")
         circ, alpha = be(A, reverse_bits=False, draw=True)
 
-        op = qi.Operator(circ.reverse_bits())
+        op = qi.Operator(circ)
         circ_matrix = op.data
         matrix = circ_matrix[0:N,0:N]
         print_matrix(matrix,2)
