@@ -13,6 +13,9 @@ Camps, Daan, et al. "Explicit quantum circuits for block encodings of certain sp
 pip install setuptools wheel
 python setup.py sdist bdist_wheel
 pip install .\dist\sparse_be-0.1.0-py3-none-any.whl
+# or
+pip install .\dist\sparse_be-0.1.0.tar.gz
+
 ```
 
 # Usage guide:
