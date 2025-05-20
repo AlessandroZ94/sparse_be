@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="sparse_be",                # Name of your package
-    version="0.1.0",                    # Version number
+    version="0.2.0",                    # Version number
     description="Python and Qiskit implementation of explicit quantum circuits for block encoding of certain sparse matrices.",  # Short description of the package
     long_description=open("README.md").read(),  # Long description from README.md
     long_description_content_type="text/markdown",  # Content type of README.md
